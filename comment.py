@@ -113,14 +113,26 @@ def create_browser(position_index):
     return driver
 
 if __name__ == "__main__":
-    start_page = int(input("댓글작성 시작페이지: "))
-    end_page = int(input("댓글작성 종료페이지: "))
-    speed = int(input("작업 속도 (1~10): "))
+    # 각각 쓰레드별 입력 받기
+    print("=== oncapan_worker 입력 ===")
+    start_page1 = int(input("댓글작성 시작페이지: "))
+    end_page1 = int(input("댓글작성 종료페이지: "))
+    speed1 = int(input("작업 속도 (1~10): "))
+
+    print("=== onca112_worker 입력 ===")
+    start_page2 = int(input("댓글작성 시작페이지: "))
+    end_page2 = int(input("댓글작성 종료페이지: "))
+    speed2 = int(input("작업 속도 (1~10): "))
+
+    print("=== allin42_worker 입력 ===")
+    start_page3 = int(input("댓글작성 시작페이지: "))
+    end_page3 = int(input("댓글작성 종료페이지: "))
+    speed3 = int(input("작업 속도 (1~10): "))
 
     threads = [
-        # threading.Thread(target=oncapan_worker, args=(start_page, end_page, speed, 0)),
-        # threading.Thread(target=onca112_worker, args=(start_page, end_page, speed, 1)),
-        threading.Thread(target=allin42_worker, args=(start_page, end_page, speed, 2)),
+        threading.Thread(target=oncapan_worker, args=(start_page1, end_page1, speed1, 0)),
+        threading.Thread(target=onca112_worker, args=(start_page2, end_page2, speed2, 1)),
+        threading.Thread(target=allin42_worker, args=(start_page3, end_page3, speed3, 2)),
     ]
 
     for t in threads:
